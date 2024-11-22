@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoteropoliBot</title>
+
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    
+    <style>
+
+        body {
+            background-color: #1a1a1a;
+        }
+
+        .text-center {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: azure;
+            letter-spacing: 3px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        
+        /* customiza as cores do chatbot */
+        df-messenger {
+            --df-messenger-bot-message: #d7bdfc;
+            --df-messenger-button-titlebar-color: #b384f5;
+            --df-messenger-chat-background-color: #fafafa;
+            --df-messenger-font-color: black;
+            --df-messenger-send-icon: #b384f5;
+            --df-messenger-user-message: #dfdfdf;
+            }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        // diminui a altura da tela aberta do chatbot
+        $(document).ready(function() {
+            window.addEventListener('dfMessengerLoaded', function (event) {
+            $r1 = document.querySelector("df-messenger");
+            $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
+            $r3 = $r2.shadowRoot.querySelector("df-messenger-user-input");
+            var sheet = new CSSStyleSheet;
+            
+            sheet.replaceSync( `div.chat-wrapper[opened="true"] { height: 450px }`);
+            $r2.shadowRoot.adoptedStyleSheets = [ sheet ];
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="text-center">
+        <h1>SoteropoliBot</h1>
+    </div>
+    
+    <!-- código do dialogflow -->
+    <df-messenger
+    intent="WELCOME"
+    chat-title="SoteropoliBot"
+    agent-id="72d69587-93bd-42b4-9ffe-8f56b65d9ff1"
+    language-code="pt-br"
+    class="messenger"
+    ></df-messenger>
+</body>
+</html>
